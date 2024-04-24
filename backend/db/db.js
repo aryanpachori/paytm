@@ -1,24 +1,53 @@
-const moongose = require("mongoose");
+const mongoose = require('mongoose');
 
-moongose.connect(
-  "mongodb+srv://aryanpachori03:SOBtBhiyY84juLGR@cluster0.i7mnhcy.mongodb.net/"
-);
+mongoose.connect("mongodb+srv://aryanpachori03:SOBtBhiyY84juLGR@cluster0.i7mnhcy.mongodb.net/paytm")
 
-const UserSchema = new moongose.Schema({
-  firstName: String,
-  lastName: String,
-  username: {
-    type: String,
-    minLength: 6,
-  },
-  password: {
-    type: String,
-    minLength: 6,
-  },
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        minLength: 3,
+        maxLength: 30
+    },
+    password: {
+        type: String,
+        required: true,
+        minLength: 6
+    },
+    firstName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxLength: 50
+    },
+    lastName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxLength: 50
+    }
 });
 
-const User = moongose.model("User", UserSchema);
+const accountSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
+    },
+    balance: {
+        type: Number,
+        required: true
+    }
+});
+
+const Account = mongoose.model('Account', accountSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
-  User,
+	User,
+    Account
 };
