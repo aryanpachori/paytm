@@ -1,4 +1,3 @@
-function DashBoard(){
+export function DashBoard(){
 
 }
-export default DashBoard
