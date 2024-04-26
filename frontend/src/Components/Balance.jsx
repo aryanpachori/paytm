@@ -5,7 +5,7 @@ export function Balance({value}){
         <div className=" font-bold text-lg">
           Your Balance
         </div>
-        <div className="font-semibold ml-4 text-lg">
+        <div className="font-semibold ml-2 text-lg">
         Rs {value}
         </div>
         </div>

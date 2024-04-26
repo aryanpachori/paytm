@@ -1,4 +1,4 @@
-// backend/routes/account.js
+
 const express = require('express');
 const { authMiddleware } = require('../middleware/middleware');
 const { Account } = require('../db/db');
